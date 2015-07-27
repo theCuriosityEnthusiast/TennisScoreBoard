@@ -21,6 +21,7 @@ public class TennisScoreBoard {
 				System.out.println("Invalid character");
 				break;
 			}
+			System.out.println(showScore());
 		}
 	}
 	
