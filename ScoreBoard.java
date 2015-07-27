@@ -34,7 +34,7 @@ class ScoreBoard{
 			} else {
 				String currentScore = printScores();
 				System.out.println(currentScore);
-				if (currentScore.contains("Game")) {
+				if (isGameOver(currentScore)) {
 					break;
 				}
 			}
@@ -84,5 +84,9 @@ class ScoreBoard{
 				}
 			}
 		}
+	}
+	
+	public static boolean isGameOver(String currentScore) {
+		return currentScore.contains("Game");
 	}
 }
