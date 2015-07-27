@@ -8,8 +8,7 @@ public class TennisScoreBoard {
 		scoreA = 0;
 		scoreB = 0;
 	}
-	
-	
+		
 	public String showScore() {
 		String[] scores = {"love","15","30","40"};
 		
@@ -36,5 +35,22 @@ public class TennisScoreBoard {
 		} 
 	}
 	
+
+	public void setScore(String pointSequence){
+		for(char ch: pointSequence.toCharArray()){
+			if(Character.toLowerCase(ch) == 'a'){
+				scoreA +=1;
+			}
+			else if(Character.toLowerCase(ch) == 'b'){
+				scoreB +=1;
+			}
+			else{
+				System.out.println("Invalid character");
+				break;
+			}
+			System.out.println(showScore());
+		}
+	}
+
 	
 }
