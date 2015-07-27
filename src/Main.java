@@ -6,11 +6,14 @@ public class Main {
 		// TODO Auto-generated method stub
 		Scanner input = new Scanner(System.in);
 		
-		String pointsSequence = input.nextLine();
+		String pointSequence = input.nextLine();
 		
-		TennisScoreBoard wimbledonScores = new TennisScoreBoard(pointsSequence);
-		
-		System.out.println(wimbledonScores.scoreString()); 
+		TennisScoreBoard wimbledonScores = new TennisScoreBoard();
+	
+		for(char player: pointSequence.toCharArray()){
+			wimbledonScores.addPoint(player);
+			System.out.println(wimbledonScores.scoreString()); 
+		}
 	}
 
 }

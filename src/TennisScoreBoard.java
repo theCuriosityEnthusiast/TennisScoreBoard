@@ -18,17 +18,7 @@ public class TennisScoreBoard {
 		scorePlayerB = 0;
 		gameOver = false;
 	}
-	
-	
-	TennisScoreBoard(String pointSequence){
-		scorePlayerA = 0;
-		scorePlayerB = 0;
-		for(char player: pointSequence.toCharArray()){
-			addPoint(player);
-		}
-		gameOver = false;
-	}
-	
+		
 	public String scoreString() {
 
 		if (scorePlayerA >=  DEUCE_CONDITION  &&  scorePlayerB >= DEUCE_CONDITION ) {
