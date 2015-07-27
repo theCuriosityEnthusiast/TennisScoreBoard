@@ -18,10 +18,20 @@ public class TennisScoreBoard {
 		scorePlayerB = 0;
 		gameOver = false;
 	}
-		
+	
+	
+	TennisScoreBoard(String pointSequence){
+		scorePlayerA = 0;
+		scorePlayerB = 0;
+		for(char player: pointSequence.toCharArray()){
+			addPoint(player);
+		}
+		gameOver = false;
+	}
+	
 	public String scoreString() {
 
-		if(scorePlayerA >=  DEUCE_CONDITION  &&  scorePlayerB >= DEUCE_CONDITION ) {
+		if (scorePlayerA >=  DEUCE_CONDITION  &&  scorePlayerB >= DEUCE_CONDITION ) {
 		
 			return deuceScoreString();
 		
@@ -42,6 +52,22 @@ public class TennisScoreBoard {
 		}
 	}
 
+	public int getWinner() {
+		
+		if (scorePlayerA >=  DEUCE_CONDITION  &&  scorePlayerB >= DEUCE_CONDITION ) {
+			if(scorePlayerA - scorePlayerB >= WINNING_DIFF) return 1;
+			else if(scorePlayerB - scorePlayerA >= WINNING_DIFF) return 2;
+			else return 0;
+				
+		} else if (scorePlayerA == MIN_WINNING_SCORE) {
+			return 1;
+	    } else if (scorePlayerB == MIN_WINNING_SCORE) {
+	    	return 2;
+		} else {
+			return 0;
+		}
+		
+	}
 	
 	private String deuceScoreString() {
 		
@@ -65,34 +91,17 @@ public class TennisScoreBoard {
 		} 
 		
 	}
-	
-
-	public void setScore(String pointSequence){
-		for(char ch: pointSequence.toCharArray()){
-			if(Character.toLowerCase(ch) == 'a'){
-				scorePlayerA +=1;
-			}
-			else if(Character.toLowerCase(ch) == 'b'){
-				scorePlayerB +=1;
-			}
-			else{
-				System.out.println("Invalid character");
-				break;
-			}
-			printScore();
-		}
-	}
-
-	
-	public void printScore() {
 		
-		if (gameOver) {	
-			System.out.println("GAME OVER");
-			
-		} else {
-			System.out.println(scoreString());
+
+	public void addPoint (char player){
+		if(Character.toLowerCase(player) == 'a'){
+			scorePlayerA +=1;
+		}
+		else if(Character.toLowerCase(player) == 'b'){
+			scorePlayerB +=1;
+		}
+		else{
+			System.out.println("Invalid character");
 		}
 	}
-
-	
 }
