@@ -4,7 +4,8 @@ import java.io.*;
 
 class ScoreBoard{
 	public static void main (String[] args) throws java.lang.Exception {
-		String userString = readUserInput();
+		String pointSequence = readUserInput();
+		
 	}
 	
 	public static String readUserInput() {
