@@ -9,4 +9,32 @@ public class TennisScoreBoard {
 		scoreB = 0;
 	}
 	
+	
+	public String showScore() {
+		String[] scores = {"love","15","30","40"};
+		
+		if(scoreA >= 4 || scoreA >= 4) {
+			 return dueHandler();
+		} else {
+			String scoreStringB = scores[scoreB];
+			String  scoreStringA = scores[scoreA];
+			return "Player 1: " + scoreStringA + " Player 2: " + scoreStringB ; 
+		}
+	}
+
+
+	private String dueHandler() {
+		if (scoreA == scoreB) {
+			return "DEUCE" ; 
+		} else if ( Math.abs(scoreA-scoreB)>=2 ) {
+			
+			if(scoreA < scoreB) return "Player 1: _ Player 2: Game" ; 
+			else return "Player 1: Game Player 2: _" ; 
+			
+		} else {
+			return null;
+		} 
+	}
+	
+	
 }
