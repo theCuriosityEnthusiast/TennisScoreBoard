@@ -19,7 +19,7 @@ public class TennisScoreBoard {
 	public String showScore() {
 
 		if(scorePlayerA >= DEUCE_POINT || scorePlayerA >= DEUCE_POINT ) {
-			 return dueHandler();
+			 return deuceHandler();
 		} else {
 			String scoreStringB = scoreStrings[scorePlayerB];
 			String scoreStringA = scoreStrings[scorePlayerA];
@@ -28,7 +28,7 @@ public class TennisScoreBoard {
 	}
 
 
-	private String dueHandler() {
+	private String deuceHandler() {
 		
 		int currentDiff = Math.abs(scorePlayerA-scorePlayerB);
 		
