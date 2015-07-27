@@ -1,40 +1,49 @@
 
 public class TennisScoreBoard {
 	
+	private static final int MIN_WINNING_SCORE = 4;
 	private static final int WINNING_DIFF = 2;
 	private static final int ADV_DIFF = 1;
-	private static final int DEUCE_POINT = 4;
+	private static final int DEUCE_CONDITION = 3;
+	
 	
 	private static final String[] scoreStrings = {"0","15","30","40","GAME"};
 	
 	private int scorePlayerA;
 	private int scorePlayerB;
+	private boolean gameOver;
 
-	
 	TennisScoreBoard(){
 		scorePlayerA = 0;
 		scorePlayerB = 0;
+		gameOver = false;
 	}
 		
-	public String showScore() {
+	public String scoreString() {
 
-		if(scorePlayerA + scorePlayerB > 6 ) {
-			 return deuceHandler();
-		} 
-		else if(scorePlayerA == 4){
-			return "Player 1: Game Player 2: _" ;
-		else if(scorePlayerB == 4){
-			return "Player 1: _ Player 2: Game" ;
-		}
-		}else {
-			String scoreStringB = scoreStrings[scorePlayerB];
-			String scoreStringA = scoreStrings[scorePlayerA];
-			return "Player 1: " + scoreStringA + " Player 2: " + scoreStringB ; 
+		if(scorePlayerA >=  DEUCE_CONDITION  &&  scorePlayerB >= DEUCE_CONDITION ) {
+		
+			return deuceScoreString();
+		
+		} else if (scorePlayerA == MIN_WINNING_SCORE){
+			
+			gameOver = true;
+			return "Player 1: Game Player 2: _" ; 
+		
+		} else if (scorePlayerB == MIN_WINNING_SCORE){
+			
+			gameOver = true;
+			return "Player 1: _ Player 2: Game" ; 
+		
+		} else {		
+		
+			return "Player 1: " + scoreStrings[scorePlayerA] + " Player 2: " + scoreStrings[scorePlayerB] ; 
+			
 		}
 	}
 
-
-	private String deuceHandler() {
+	
+	private String deuceScoreString() {
 		
 		int currentDiff = Math.abs(scorePlayerA-scorePlayerB);
 		
@@ -47,14 +56,13 @@ public class TennisScoreBoard {
 			if(scorePlayerA < scorePlayerB) return "Player 1: 40 Player 2: Adv" ; 
 			else return "Player 1: Adv Player 2: 40" ; 
 		
-		} else if ( currentDiff == WINNING_DIFF) { 
+		} else {
+			
+			gameOver = true;
 			
 			if(scorePlayerA < scorePlayerB) return "Player 1: _ Player 2: Game" ; 
 			else return "Player 1: Game Player 2: _" ;
-			
-		} else {	
-			return "INVALID POINT SEQUENCE";
-		}
+		} 
 		
 	}
 	
@@ -71,7 +79,18 @@ public class TennisScoreBoard {
 				System.out.println("Invalid character");
 				break;
 			}
-			System.out.println(showScore());
+			printScore();
+		}
+	}
+
+	
+	public void printScore() {
+		
+		if (gameOver) {	
+			System.out.println("GAME OVER");
+			
+		} else {
+			System.out.println(scoreString());
 		}
 	}
 
