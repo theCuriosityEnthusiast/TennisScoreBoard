@@ -5,7 +5,7 @@ public class TennisScoreBoard {
 	private static final int ADV_DIFF = 1;
 	private static final int DEUCE_POINT = 4;
 	
-	private static final String[] scoreStrings = {"0","15","30","40"};
+	private static final String[] scoreStrings = {"0","15","30","40","GAME"};
 	
 	private int scorePlayerA;
 	private int scorePlayerB;
@@ -18,9 +18,15 @@ public class TennisScoreBoard {
 		
 	public String showScore() {
 
-		if(scorePlayerA >= DEUCE_POINT || scorePlayerA >= DEUCE_POINT ) {
+		if(scorePlayerA + scorePlayerB > 6 ) {
 			 return deuceHandler();
-		} else {
+		} 
+		else if(scorePlayerA == 4){
+			return "Player 1: Game Player 2: _" ;
+		else if(scorePlayerB == 4){
+			return "Player 1: _ Player 2: Game" ;
+		}
+		}else {
 			String scoreStringB = scoreStrings[scorePlayerB];
 			String scoreStringA = scoreStrings[scorePlayerA];
 			return "Player 1: " + scoreStringA + " Player 2: " + scoreStringB ; 
