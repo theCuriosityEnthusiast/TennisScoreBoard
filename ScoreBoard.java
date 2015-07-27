@@ -2,10 +2,9 @@ import java.util.*;
 
 class ScoreBoard{
 	
-	private static final int WINNING_DIFF = 2;
-	private static final int ADV_DIFF = 1;
+	private static final int ADVANTAGE_DIFF = 1;
 	
-	private static final String[] scoreStrings = {"0","15","30","40","GAME"};
+	private static final String[] scoreValues = {"0","15","30","40","GAME"};
 	private static int scoreFirstPlayer = 0;
 	private static int scoreSecondPlayer = 0;
 	
@@ -26,18 +25,16 @@ class ScoreBoard{
 				break;
 			}
 			
-			if(scoreFirstPlayer <= 3 && scoreSecondPlayer <= 3 ) {
-				printScores();
-			} else if (firstplayerwins()) {
+			if (firstplayerwins()) {
 				System.out.println("Player 1: Game  Player 2: _");
 				break;
 			} else if (secondplayerwins()) {
 				System.out.println("Player 1: _  Player 2: Game");
 				break;
 			} else {
-				String currentScore = deuceSituation();
+				String currentScore = printScores();
 				System.out.println(currentScore);
-				if (currentScore.contains("over")) {
+				if (currentScore.contains("Game")) {
 					break;
 				}
 			}
@@ -56,12 +53,6 @@ class ScoreBoard{
 		}
 	}
 
-	public static void printScores(){
-		String firstPlayerPoints = scoreStrings[scoreFirstPlayer];
-		String secondPlayerPoints = scoreStrings[scoreSecondPlayer];
-		System.out.println("Player 1: " + firstPlayerPoints + " Player 2: " + secondPlayerPoints) ;
-	}
-	
 	public static boolean firstplayerwins() {
 		return scoreFirstPlayer == 4 && (scoreFirstPlayer - scoreSecondPlayer > 1) ;
 	}
@@ -69,25 +60,29 @@ class ScoreBoard{
 	public static boolean secondplayerwins() {
 		return scoreSecondPlayer == 4 && (scoreSecondPlayer - scoreFirstPlayer > 1) ;
 	}
-		
-	public static String deuceSituation() {
-		int scoreDifference = scoreFirstPlayer - scoreSecondPlayer;
-		if (scoreDifference == 0) {
-			return "Player 1: 40  Player 2: 40";
-		} else if (Math.abs(scoreDifference) == ADV_DIFF) {
-			if (scoreDifference > 0) {
-				return "Player 1: Advantage  Player 2: 40";
-			} else {
-				return "Player 1: 40  Player 2: Advantage";
-			}
-		} else if (Math.abs(scoreDifference) == WINNING_DIFF) {
-			if (scoreDifference > 0) {
-				return "Player 1: Game  Player 2: _";
-			} else {
-				return "Player 1: _  Player 2: Game";
-			}
+	
+	public static String printScores(){
+		if(scoreFirstPlayer <= 3 && scoreSecondPlayer <= 3 ) {
+			String firstPlayerPoints = scoreValues[scoreFirstPlayer];
+			String secondPlayerPoints = scoreValues[scoreSecondPlayer];
+			return "Player 1: " + firstPlayerPoints + " Player 2: " + secondPlayerPoints ;
 		} else {
-			return "Game already over!";
+			int scoreDifference = scoreFirstPlayer - scoreSecondPlayer;
+			if (scoreDifference == 0) {
+				return "Player 1: 40  Player 2: 40";
+			} else if (Math.abs(scoreDifference) == ADVANTAGE_DIFF) {
+				if (scoreDifference > 0) {
+					return "Player 1: Advantage  Player 2: 40";
+				} else {
+					return "Player 1: 40  Player 2: Advantage";
+				}
+			} else {
+				if (scoreDifference > 0) {
+					return "Player 1: Game  Player 2: _";
+				} else {
+					return "Player 1: _  Player 2: Game";
+				}
+			}
 		}
 	}
 }
