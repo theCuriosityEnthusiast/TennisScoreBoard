@@ -10,7 +10,7 @@ public class TennisScoreBoard {
 	}
 		
 	public String showScore() {
-		String[] scores = {"love","15","30","40"};
+		String[] scores = {"0","15","30","40"};
 		
 		if(scoreA >= 4 || scoreA >= 4) {
 			 return dueHandler();
@@ -25,13 +25,14 @@ public class TennisScoreBoard {
 	private String dueHandler() {
 		if (scoreA == scoreB) {
 			return "DEUCE" ; 
-		} else if ( Math.abs(scoreA-scoreB)>=2 ) {
+		} else if ( Math.abs(scoreA-scoreB) >= 2) {
 			
 			if(scoreA < scoreB) return "Player 1: _ Player 2: Game" ; 
 			else return "Player 1: Game Player 2: _" ; 
 			
 		} else {
-			return null;
+			if(scoreA < scoreB) return "Player 1: 40 Player 2: Adv" ; 
+			else return "Player 1: Adv Player 2: 40" ; 
 		} 
 	}
 	
